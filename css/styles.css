@@ -5,13 +5,13 @@
 
 :root {
   --body-background: #1C1C1C;
-  --container-background: #F4F4F4; /* #1F2937 */
+  --container-background: #F4F4F4;
   --header-background: #6943FF;
   --header-border-color: #B295FF;
   --button-color: #3D3D3D;
-  --units-background: #FFFFFF; /* #273549 */
-  --units-title-color: #5A537B; /* #CCC1FF */
-  --units-body-color: #353535; /* #FFFFFF */
+  --units-background: #FFFFFF;
+  --card-title-color: #5A537B;
+  --card-text-color: #353535;
 }
 
 /* UTILITY CLASSES */
@@ -76,8 +76,8 @@ i {
   padding: 10px;
   
   /* styling */
-  color: var(--units-body-color);
-  border: 2px solid var(--units-body-color);
+  color: var(--card-text-color);
+  border: 2px solid var(--card-text-color);
   border-radius: 5px;
   cursor: pointer;
 }
@@ -175,7 +175,7 @@ h2 {
   font-size: 20px;
   line-height: 20px;
   font-weight: 600;
-  color: var(--units-title-color);
+  color: var(--card-title-color);
   text-transform: capitalize;
 }
 
@@ -184,8 +184,15 @@ p {
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  color: var(--units-body-color);
+  color: var(--card-text-color);
   text-transform: lowercase;
+}
+
+/* CONTENT SPECIFIC CLASSES */
+.error-message {
+  background-color: lightcoral;
+  color: white;
+  font-weight: 600;
 }
 
 @media (min-width: 576px) {

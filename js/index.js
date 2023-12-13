@@ -18,7 +18,7 @@ const conversionGuide = {
 }
 
 
-// DOM ELEMENTS
+// DOM ELEMENTS & GLOBAL VARIABLES
 
 const r = document.querySelector(':root');
 const amtInput = document.getElementById("amt-input")
@@ -54,21 +54,13 @@ function generateCardHTML(value, measurement) {
   return(htmlString)
 }
 
-function generateAndDisplayMeasurements() {
-  // remove HTML from the container
-  while(cardsContainer.firstChild) {
-    cardsContainer.removeChild(cardsContainer.firstChild)
-  }
-
-  // collect the input value to be converted
-  const inputValue = amtInput.value
-
+function generateAndDisplayMeasurements(value) {
   for (const m in conversionGuide) {
     // create a new element for displaying units and values
     const cardElement = document.createElement("section")
 
     // generate HTML content to be displayed
-    const cardHTML = generateCardHTML(inputValue, m)
+    const cardHTML = generateCardHTML(value, m)
     cardElement.innerHTML = cardHTML
 
     // assign classes for styling
@@ -79,17 +71,46 @@ function generateAndDisplayMeasurements() {
   }
 }
 
+function generateAndDisplayErrorMessage() {
+  // create a new element for displaying error message
+  const cardElement = document.createElement("section")
+  cardElement.innerHTML = '<p>No input value found!</p>'
+
+  // assign classes for styling
+  cardElement.classList.add("centered-content")
+  cardElement.classList.add("error-message")
+
+  // append the new card to the container
+  cardsContainer.appendChild(cardElement)
+}
+
+function updateContent() {
+  // remove HTML from the container
+  while(cardsContainer.firstChild) {
+    cardsContainer.removeChild(cardsContainer.firstChild)
+  }
+
+  // collect the input value to be converted
+  const inputValue = amtInput.value
+
+  if (inputValue === "") {
+    generateAndDisplayErrorMessage()
+  } else {
+    generateAndDisplayMeasurements(inputValue)
+  }
+}
+
 function changeColorScheme(darkMode) {
   if (darkMode) {
     r.style.setProperty('--container-background', '#1F2937');
     r.style.setProperty('--units-background', '#273549');
-    r.style.setProperty('--units-title-color', '#CCC1FF');
-    r.style.setProperty('--units-body-color', '#FFFFFF');
+    r.style.setProperty('--card-title-color', '#CCC1FF');
+    r.style.setProperty('--card-text-color', '#FFFFFF');
   } else {
     r.style.setProperty('--container-background', '#F4F4F4');
     r.style.setProperty('--units-background', '#FFFFFF');
-    r.style.setProperty('--units-title-color', '#5A537B');
-    r.style.setProperty('--units-body-color', '#353535');
+    r.style.setProperty('--card-title-color', '#5A537B');
+    r.style.setProperty('--card-text-color', '#353535');
   }
 }
 
@@ -97,18 +118,10 @@ function changeColorScheme(darkMode) {
 function switchDarkmode() {
   darkMode = !darkMode;
   changeColorScheme(darkMode);
-
-  // if (darkMode) {
-  //   darkmodeToggle.classList.add("medium-opacity");
-  // } else {
-  //   darkmodeToggle.classList.remove("medium-opacity");
-  // }
 }
 
 // EVENT LISTENERS
-convertBtn.addEventListener("click", generateAndDisplayMeasurements)
+convertBtn.addEventListener("click", updateContent)
 darkmodeToggle.addEventListener("click", switchDarkmode)
 
-document.addEventListener("DOMContentLoaded", () => {
-  generateAndDisplayMeasurements()
-})
+document.addEventListener("DOMContentLoaded", updateContent)
