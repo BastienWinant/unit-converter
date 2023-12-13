@@ -73,7 +73,7 @@ function generateMeasurementsCards(value) {
 function generateErrorCard() {
   // create a new element for displaying error message
   const cardElement = document.createElement("section")
-  cardElement.innerHTML = '<p class="error-message">No input value found!</p>'
+  cardElement.innerHTML = '<p class="error-message">No valid input value found!</p>'
 
   // assign classes for styling
   cardElement.classList.add("centered-content")
@@ -92,7 +92,7 @@ function updateContent() {
   // collect the input value to be converted
   const inputValue = amtInput.value
 
-  if (inputValue === "") {
+  if (inputValue === "" || inputValue < 0) {
     generateErrorCard()
   } else {
     generateMeasurementsCards(inputValue)
