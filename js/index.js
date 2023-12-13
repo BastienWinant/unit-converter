@@ -46,7 +46,7 @@ function generateCardHTML(value, measurement) {
   
   htmlString = `<h2 class="no-margin">${measurement} (${metricUnit}/${imperialUnit})</h2>`
   htmlString +=
-    `<p class="no-margin">
+    `<p>
       ${value} ${shortenedMetricUnit} =  ${imperialValue} ${imperialUnit} | ${value} ${imperialUnit} = ${metricValue} ${shortenedMetricUnit}
     </p>`
 
