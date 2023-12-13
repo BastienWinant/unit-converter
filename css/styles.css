@@ -1,0 +1,132 @@
+.black-border {
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+:root {
+  --body-background: #1C1C1C;
+  --container-background: #F4F4F4; /* #1F2937 */
+  --header-background: #6943FF;
+  --header-border-color: #B295FF;
+  --button-color: #3D3D3D;
+  --units-background: #FFFFFF; /* #273549 */
+  --units-color: #5A537B; /* #CCC1FF */
+}
+
+/* UTILITY CLASSES */
+.no-margin {
+  margin: 0 !important;
+}
+
+.no-padding {
+  padding: 0 !important
+}
+
+.bbox {
+  box-sizing: border-box;
+}
+
+.centered-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* GENERIC CLASSES */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+main {
+  /* sizing and spacing */
+  width: 90vw;
+  max-width: 550px;
+  margin: 0 auto;
+
+  background-color: var(--container-background);
+}
+
+h1 {
+  /* text styling */
+  font-size: 4vw;
+  line-height: 5vw;
+  font-weight: 800;
+  text-transform: capitalize;
+}
+
+input {
+  /* sizing and spacing */
+  margin-top: 5px;
+  width: 117px;
+  height: 82px;
+
+  /* content layout */
+  text-align: center;
+
+  /* styling */
+  border: 2px solid var(--header-border-color);
+  border-radius: 5px;
+  background-color: transparent;
+
+  /* text style */
+  font-family: 'Inter', sans-serif;
+  font-size: 58px;
+  font-weight: 800;
+  line-height: 24px;
+  color: white;
+}
+
+input::placeholder {
+  color: white;
+}
+
+button {
+  /* sizing and spacing */
+  width: 117px;
+  height: 42px;
+
+  /* styling */
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+
+  /* text style */
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: capitalize;
+  color: var(--button-color);
+}
+
+/* CONTENT SPECIFIC CLASSES */
+.main-header {
+  /* sizing and spacing */
+  padding: 33px;
+
+  /* content layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+
+  background-color: var(--header-background);
+  color: white;
+}
+
+@media (min-width: 576px) {
+  h1 {
+    font-size: 28px;
+    line-height: 38px;
+  }
+}
