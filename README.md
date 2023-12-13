@@ -2,6 +2,7 @@
 ## Module 3: Making websites interactive
 ### Project Description
 #### HTML
+
 All the page's content is contained inside <main> tags, the body's only direct child in the DOM.
 This main container is organized with a simple structure
 
@@ -12,11 +13,13 @@ Most notably, the static content in the header includes the <input> and <button>
 The <div> container is left blank in the static HTML file, as its content is generated purely dynamically via JavaScript.
 
 #### CSS
+
 Due to the simple top-down structure of the provided design, most of the CSS targeting is done on HTML tags directly rather than custom classes.
 
 Flexbox and Grid are use to ensure proper alignment for both static and dynamic HTML content, as well as providing responsiveness.
 
 #### JS
+
 The logic for generating and displaying the <div> container's HTML is encapsulated in the *updateContent()* function. When called, this function reads in the value in the header's <input> field and calls one of two subsequent functions, depending on whether the user provided a value in the input field.
 
 The *generateMeasurementsCards()* function handles the case when a valid numerical input is provided, and the conversion computations can be launched.
