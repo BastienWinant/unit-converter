@@ -189,10 +189,14 @@ p {
 }
 
 /* CONTENT SPECIFIC CLASSES */
-.error-message {
+.error-container {
   background-color: lightcoral;
+}
+
+.error-message {
   color: white;
-  font-weight: 600;
+  font-weight: bolder;
+  text-transform: initial;
 }
 
 @media (min-width: 576px) {

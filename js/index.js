@@ -3,17 +3,17 @@ const conversionGuide = {
   distance: {
     metricUnit: "meters",
     imperialUnit: "feet",
-    coversionRate: 0.3048 // conversion rate from metric to imperial
+    coversionRate: 3.281 // conversion rate from imperial to metric
   },
   volume: {
     metricUnit: "liters",
     imperialUnit: "gallons",
-    coversionRate: 3.78541 // conversion rate from metric to imperial
+    coversionRate: 0.264 // conversion rate from imperial to metric
   },
   mass: {
     metricUnit: "kilograms",
     imperialUnit: "pounds",
-    coversionRate: 0.453592 // conversion rate from metric to imperial
+    coversionRate: 2.204 // conversion rate from imperial to metric
   }
 }
 
@@ -38,12 +38,11 @@ function generateCardHTML(value, measurement) {
   const imperialUnit = conversionGuide[measurement].imperialUnit
   
   // extract the conversion rates between metric and imperial systems
-  const toMetricConversionRate = conversionGuide[measurement].coversionRate
-  const toImperialConversionRate = 1 / toMetricConversionRate
+  const toImperialConversionRate = conversionGuide[measurement].coversionRate
   
   // compute the metric and imperial values
-  const metricValue = Math.round(1000 * value * toMetricConversionRate) / 1000
-  const imperialValue = Math.round(1000 * value * toImperialConversionRate) / 1000
+  const metricValue = (value / toImperialConversionRate).toFixed(3)
+  const imperialValue = (value * toImperialConversionRate).toFixed(3)
   
   htmlString = `<h2 class="no-margin">${measurement} (${metricUnit}/${imperialUnit})</h2>`
   htmlString +=
@@ -74,11 +73,11 @@ function generateAndDisplayMeasurements(value) {
 function generateAndDisplayErrorMessage() {
   // create a new element for displaying error message
   const cardElement = document.createElement("section")
-  cardElement.innerHTML = '<p>No input value found!</p>'
+  cardElement.innerHTML = '<p class="error-message">No input value found!</p>'
 
   // assign classes for styling
   cardElement.classList.add("centered-content")
-  cardElement.classList.add("error-message")
+  cardElement.classList.add("error-container")
 
   // append the new card to the container
   cardsContainer.appendChild(cardElement)
