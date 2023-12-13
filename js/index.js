@@ -1,3 +1,4 @@
+// static mapping for metric/imperial system conversion
 const conversionGuide = {
   distance: {
     metricUnit: "meters",
@@ -16,52 +17,98 @@ const conversionGuide = {
   }
 }
 
+
+// DOM ELEMENTS
+
+const r = document.querySelector(':root');
+const amtInput = document.getElementById("amt-input")
+const convertBtn = document.getElementById("convert-btn")
+const cardsContainer = document.getElementById("cards-container")
+
+let darkMode = false;
+const darkmodeToggle = document.querySelector(".fa-lightbulb");
+
+
+// CUSTOM FUNCTIONS
+
 function generateCardHTML(value, measurement) {
+  // extract the metric and imperial measurement units
   const metricUnit = conversionGuide[measurement].metricUnit
+  const shortenedMetricUnit = metricUnit === "kilograms" ? "kilos" : metricUnit
   const imperialUnit = conversionGuide[measurement].imperialUnit
   
+  // extract the conversion rates between metric and imperial systems
   const toMetricConversionRate = conversionGuide[measurement].coversionRate
   const toImperialConversionRate = 1 / toMetricConversionRate
   
+  // compute the metric and imperial values
   const metricValue = Math.round(1000 * value * toMetricConversionRate) / 1000
   const imperialValue = Math.round(1000 * value * toImperialConversionRate) / 1000
   
   htmlString = `<h2 class="no-margin">${measurement} (${metricUnit}/${imperialUnit})</h2>`
   htmlString +=
     `<p class="no-margin">
-      ${value} ${metricUnit} =  ${imperialValue} ${imperialUnit} | ${value} ${imperialUnit} = ${metricValue} ${metricUnit}
+      ${value} ${shortenedMetricUnit} =  ${imperialValue} ${imperialUnit} | ${value} ${imperialUnit} = ${metricValue} ${shortenedMetricUnit}
     </p>`
 
   return(htmlString)
 }
 
+function generateAndDisplayMeasurements() {
+  // remove HTML from the container
+  while(cardsContainer.firstChild) {
+    cardsContainer.removeChild(cardsContainer.firstChild)
+  }
+
+  // collect the input value to be converted
+  const inputValue = amtInput.value
+
+  for (const m in conversionGuide) {
+    // create a new element for displaying units and values
+    const cardElement = document.createElement("section")
+
+    // generate HTML content to be displayed
+    const cardHTML = generateCardHTML(inputValue, m)
+    cardElement.innerHTML = cardHTML
+
+    // assign classes for styling
+    cardElement.classList.add("centered-content")
+
+    // append the new card to the container
+    cardsContainer.appendChild(cardElement)
+  }
+}
+
+function changeColorScheme(darkMode) {
+  if (darkMode) {
+    r.style.setProperty('--container-background', '#1F2937');
+    r.style.setProperty('--units-background', '#273549');
+    r.style.setProperty('--units-title-color', '#CCC1FF');
+    r.style.setProperty('--units-body-color', '#FFFFFF');
+  } else {
+    r.style.setProperty('--container-background', '#F4F4F4');
+    r.style.setProperty('--units-background', '#FFFFFF');
+    r.style.setProperty('--units-title-color', '#5A537B');
+    r.style.setProperty('--units-body-color', '#353535');
+  }
+}
+
+// toggle the color scheme
+function switchDarkmode() {
+  darkMode = !darkMode;
+  changeColorScheme(darkMode);
+
+  // if (darkMode) {
+  //   darkmodeToggle.classList.add("medium-opacity");
+  // } else {
+  //   darkmodeToggle.classList.remove("medium-opacity");
+  // }
+}
+
+// EVENT LISTENERS
+convertBtn.addEventListener("click", generateAndDisplayMeasurements)
+darkmodeToggle.addEventListener("click", switchDarkmode)
+
 document.addEventListener("DOMContentLoaded", () => {
-  // DOM ELEMENTS
-  const amtInput = document.getElementById("amt-input")
-  const convertBtn = document.getElementById("convert-btn")
-  const cardsContainer = document.getElementById("cards-container")
-
-  // EVENT LISTENERS
-  convertBtn.addEventListener("click", () => {
-    // remove HTML from the container
-    cardsContainer.innertHTML = ""
-
-    // collect the input value to be converted
-    const inputValue = amtInput.value
-
-    for (const m in conversionGuide) {
-      // create a new element for displaying units and values
-      const cardElement = document.createElement("section")
-
-      // generate HTML content to be displayed
-      const cardHTML = generateCardHTML(inputValue, m)
-      cardElement.innerHTML = cardHTML
-
-      // assign classes for styling
-      cardElement.classList.add("centered-content")
-
-      // append the new card to the container
-      cardsContainer.appendChild(cardElement)
-    }
-  })
+  generateAndDisplayMeasurements()
 })

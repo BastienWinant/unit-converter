@@ -48,7 +48,7 @@ input[type=number] {
 /* GENERIC CLASSES */
 body {
   /* content layout */
-  padding: 126px 0;
+  padding: 80px 0;
 
   /* styling */
   background-color: var(--body-background);
@@ -71,11 +71,29 @@ main {
 i {
   /* sizing and spacing */
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 33px;
+  left: 50px;
+  padding: 10px;
   
   /* styling */
+  color: var(--units-body-color);
+  border: 2px solid var(--units-body-color);
+  border-radius: 5px;
   cursor: pointer;
+}
+
+header {
+  /* sizing and spacing */
+  padding: 100px 0 33px;
+
+  /* content layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+
+  background-color: var(--header-background);
+  color: white;
 }
 
 h1 {
@@ -166,23 +184,8 @@ p {
   font-size: 14px;
   line-height: 20px;
   font-weight: 400;
-  color: #353535;
+  color: var(--units-body-color);
   text-transform: lowercase;
-}
-
-/* CONTENT SPECIFIC CLASSES */
-.main-header {
-  /* sizing and spacing */
-  padding: 33px;
-
-  /* content layout */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-
-  background-color: var(--header-background);
-  color: white;
 }
 
 @media (min-width: 576px) {
