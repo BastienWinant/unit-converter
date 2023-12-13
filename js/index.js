@@ -53,7 +53,7 @@ function generateCardHTML(value, measurement) {
   return(htmlString)
 }
 
-function generateAndDisplayMeasurements(value) {
+function generateMeasurementsCards(value) {
   for (const m in conversionGuide) {
     // create a new element for displaying units and values
     const cardElement = document.createElement("section")
@@ -70,7 +70,7 @@ function generateAndDisplayMeasurements(value) {
   }
 }
 
-function generateAndDisplayErrorMessage() {
+function generateErrorCard() {
   // create a new element for displaying error message
   const cardElement = document.createElement("section")
   cardElement.innerHTML = '<p class="error-message">No input value found!</p>'
@@ -93,9 +93,9 @@ function updateContent() {
   const inputValue = amtInput.value
 
   if (inputValue === "") {
-    generateAndDisplayErrorMessage()
+    generateErrorCard()
   } else {
-    generateAndDisplayMeasurements(inputValue)
+    generateMeasurementsCards(inputValue)
   }
 }
 
