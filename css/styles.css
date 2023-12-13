@@ -10,7 +10,8 @@
   --header-border-color: #B295FF;
   --button-color: #3D3D3D;
   --units-background: #FFFFFF; /* #273549 */
-  --units-color: #5A537B; /* #CCC1FF */
+  --units-title-color: #5A537B; /* #CCC1FF */
+  --units-body-color: #353535; /* #FFFFFF */
 }
 
 /* UTILITY CLASSES */
@@ -46,6 +47,13 @@ input[type=number] {
 
 /* GENERIC CLASSES */
 body {
+  /* content layout */
+  padding: 126px 0;
+
+  /* styling */
+  background-color: var(--body-background);
+
+  /* text style */
   font-family: 'Inter', sans-serif;
 }
 
@@ -54,13 +62,25 @@ main {
   width: 90vw;
   max-width: 550px;
   margin: 0 auto;
+  position: relative;
 
+  /* styling */
   background-color: var(--container-background);
+}
+
+i {
+  /* sizing and spacing */
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  
+  /* styling */
+  cursor: pointer;
 }
 
 h1 {
   /* text styling */
-  font-size: 4vw;
+  font-size: 4.5vw;
   line-height: 5vw;
   font-weight: 800;
   text-transform: capitalize;
@@ -88,10 +108,6 @@ input {
   color: white;
 }
 
-input::placeholder {
-  color: white;
-}
-
 button {
   /* sizing and spacing */
   width: 117px;
@@ -101,12 +117,57 @@ button {
   background-color: #FFFFFF;
   border: none;
   border-radius: 5px;
+  cursor: pointer;
 
   /* text style */
   font-size: 16px;
+  font-weight: 500;
   line-height: 24px;
   text-transform: capitalize;
   color: var(--button-color);
+}
+
+button:hover {
+  font-weight: 600;
+}
+
+div {
+  /* content layout */
+  padding: 35px 25px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 110px;
+  gap: 23px;
+}
+
+section {
+  /* content layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  /* styling */
+  background-color: var(--units-background);
+}
+
+h2 {
+  /* text style */
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 600;
+  color: var(--units-title-color);
+  text-transform: capitalize;
+}
+
+p {
+  /* text style */
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: #353535;
+  text-transform: lowercase;
 }
 
 /* CONTENT SPECIFIC CLASSES */

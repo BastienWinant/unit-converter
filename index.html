@@ -7,19 +7,23 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head>
   <body class="no-margin">
     <main>
+      <!-- <i class="fa-solid fa-lightbulb"></i> -->
       <header class="main-header">
         <h1 class="no-margin">metric/imperial unit conversion</h1>
         <input id="amt-input" class="centered-content bbox" type="number" min="0" max="99" value="20"></input>
         <button id="convert-btn" class="centered-content">convert</button>
       </header>
-      <div>
-        <section></section>
-        <section></section>
-        <section></section>
+      <div id="cards-container" class="bbox">
+        <!-- <section class="centered-content">
+          <h2 class="no-margin">length (meter/feet)</h2>
+          <p class="no-margin">20 meters = 65.616 feet | 20 feet = 6.096 meters</p>
+        </section> -->
       </div>
     </main>
     <script src="js/index.js"></script>
